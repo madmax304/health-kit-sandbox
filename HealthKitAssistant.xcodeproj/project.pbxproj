@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		15B8E924F04CF7A32D505BE0 /* HealthKitAssistantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5EEF5F3000CEF0F35BDF3 /* HealthKitAssistantApp.swift */; };
+		1DC0D182660586D8DF71D398 /* BUILD_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 6F13E21FBBECAC85F5E814E5 /* BUILD_SUMMARY.md */; };
+		2282E560C68CC2A5CF6F16C8 /* HealthDataModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB3BE64F82C4DF68232F103 /* HealthDataModels.swift */; };
+		2843775BE3478886C6E96406 /* PROJECT_SETUP.md in Resources */ = {isa = PBXBuildFile; fileRef = 7235F7E6E908ABFA9E750C12 /* PROJECT_SETUP.md */; };
+		3ADCA455343AB4673E14095A /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D9A0D0501E5D339DCD119 /* MessageBubble.swift */; };
+		4217A0F3AB86AAE34D155F42 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADC033BF22E2D9164FE0B6 /* ChatView.swift */; };
+		4C00030A0B9EF6A5D3097F57 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEB80CC31B8DBDE5A5D87A35 /* README.md */; };
+		7ED28856F89689FBA6600A12 /* HealthKitTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7301857E7D387F06D2937 /* HealthKitTools.swift */; };
+		8204E38097A6C570EB12A247 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD8154926DDE34DA4C8923 /* Message.swift */; };
+		8DBD387E291E2E00E5BAFE50 /* AIAssistantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BA4768885399E2C6CF4A /* AIAssistantManager.swift */; };
+		B82C9C4D9DF8AC00F448D183 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5F31CF7CEC81466EB95CC2 /* HealthKitManager.swift */; };
+		C662B7D5499564B492ECCF11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FBA269FB3F0E7354D423AC /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02386E5D00183322B9D81D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		22F5EEF5F3000CEF0F35BDF3 /* HealthKitAssistantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAssistantApp.swift; sourceTree = "<group>"; };
+		419D9A0D0501E5D339DCD119 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
+		45ADC033BF22E2D9164FE0B6 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		4BB3BE64F82C4DF68232F103 /* HealthDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataModels.swift; sourceTree = "<group>"; };
+		58B3BA4768885399E2C6CF4A /* AIAssistantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistantManager.swift; sourceTree = "<group>"; };
+		634B4C9168764FDE16C48038 /* HealthKitAssistant.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HealthKitAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F13E21FBBECAC85F5E814E5 /* BUILD_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BUILD_SUMMARY.md; sourceTree = "<group>"; };
+		7235F7E6E908ABFA9E750C12 /* PROJECT_SETUP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT_SETUP.md; sourceTree = "<group>"; };
+		AE5F31CF7CEC81466EB95CC2 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		BBC7301857E7D387F06D2937 /* HealthKitTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitTools.swift; sourceTree = "<group>"; };
+		D9BD8154926DDE34DA4C8923 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		DEB80CC31B8DBDE5A5D87A35 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E5FBA269FB3F0E7354D423AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		7A1C3287FD415CC3985B7E5A = {
+			isa = PBXGroup;
+			children = (
+				E68105FB48A94E8FE9E4C6BA /* HealthKitAssistant */,
+				B9968F317E251D2A9A0CD5DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7A814C009414286DB1349494 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				45ADC033BF22E2D9164FE0B6 /* ChatView.swift */,
+				419D9A0D0501E5D339DCD119 /* MessageBubble.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B9968F317E251D2A9A0CD5DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				634B4C9168764FDE16C48038 /* HealthKitAssistant.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEBD31EE621267D188BC3FDD /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				BBC7301857E7D387F06D2937 /* HealthKitTools.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		D728EE68D667E9AB42FA73E9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				58B3BA4768885399E2C6CF4A /* AIAssistantManager.swift */,
+				AE5F31CF7CEC81466EB95CC2 /* HealthKitManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E68105FB48A94E8FE9E4C6BA /* HealthKitAssistant */ = {
+			isa = PBXGroup;
+			children = (
+				6F13E21FBBECAC85F5E814E5 /* BUILD_SUMMARY.md */,
+				E5FBA269FB3F0E7354D423AC /* ContentView.swift */,
+				22F5EEF5F3000CEF0F35BDF3 /* HealthKitAssistantApp.swift */,
+				02386E5D00183322B9D81D8C /* Info.plist */,
+				7235F7E6E908ABFA9E750C12 /* PROJECT_SETUP.md */,
+				DEB80CC31B8DBDE5A5D87A35 /* README.md */,
+				D728EE68D667E9AB42FA73E9 /* Managers */,
+				EA16A68CB7C51EC387F05909 /* Models */,
+				BEBD31EE621267D188BC3FDD /* Tools */,
+				7A814C009414286DB1349494 /* Views */,
+			);
+			path = HealthKitAssistant;
+			sourceTree = "<group>";
+		};
+		EA16A68CB7C51EC387F05909 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4BB3BE64F82C4DF68232F103 /* HealthDataModels.swift */,
+				D9BD8154926DDE34DA4C8923 /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92E48F11E5C9E71072B2A75A /* HealthKitAssistant */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00300826C486CC8ADDC06F87 /* Build configuration list for PBXNativeTarget "HealthKitAssistant" */;
+			buildPhases = (
+				F1A235D497F4C2790C27FACA /* Sources */,
+				954F93ECDE8F4DDDB7A6A3F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HealthKitAssistant;
+			packageProductDependencies = (
+			);
+			productName = HealthKitAssistant;
+			productReference = 634B4C9168764FDE16C48038 /* HealthKitAssistant.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0186627A1748A77FB2BE7D6A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					92E48F11E5C9E71072B2A75A = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9A5B16C480C23D64D08176CE /* Build configuration list for PBXProject "HealthKitAssistant" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 7A1C3287FD415CC3985B7E5A;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				92E48F11E5C9E71072B2A75A /* HealthKitAssistant */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		954F93ECDE8F4DDDB7A6A3F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DC0D182660586D8DF71D398 /* BUILD_SUMMARY.md in Resources */,
+				2843775BE3478886C6E96406 /* PROJECT_SETUP.md in Resources */,
+				4C00030A0B9EF6A5D3097F57 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1A235D497F4C2790C27FACA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DBD387E291E2E00E5BAFE50 /* AIAssistantManager.swift in Sources */,
+				4217A0F3AB86AAE34D155F42 /* ChatView.swift in Sources */,
+				C662B7D5499564B492ECCF11 /* ContentView.swift in Sources */,
+				2282E560C68CC2A5CF6F16C8 /* HealthDataModels.swift in Sources */,
+				15B8E924F04CF7A32D505BE0 /* HealthKitAssistantApp.swift in Sources */,
+				B82C9C4D9DF8AC00F448D183 /* HealthKitManager.swift in Sources */,
+				7ED28856F89689FBA6600A12 /* HealthKitTools.swift in Sources */,
+				8204E38097A6C570EB12A247 /* Message.swift in Sources */,
+				3ADCA455343AB4673E14095A /* MessageBubble.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2A98DA1A1504C3B074B21445 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HealthKitAssistant/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthkitassistant.app;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A2B418336CF8B6D6598FC45C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HealthKitAssistant/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.healthkitassistant.app;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C7821C2C0BEEA93BE0F03DBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		ED07D326BD901C3D1290AA5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00300826C486CC8ADDC06F87 /* Build configuration list for PBXNativeTarget "HealthKitAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A98DA1A1504C3B074B21445 /* Debug */,
+				A2B418336CF8B6D6598FC45C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9A5B16C480C23D64D08176CE /* Build configuration list for PBXProject "HealthKitAssistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED07D326BD901C3D1290AA5A /* Debug */,
+				C7821C2C0BEEA93BE0F03DBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0186627A1748A77FB2BE7D6A /* Project object */;
+}
