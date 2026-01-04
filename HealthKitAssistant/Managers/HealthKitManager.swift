@@ -19,7 +19,8 @@ class HealthKitManager: ObservableObject {
     }
     
     init() {
-        checkAuthorizationStatus()
+        // Don't check authorization in init - do it asynchronously in onAppear
+        // This prevents blocking the main thread on launch
     }
     
     // Check current authorization status
@@ -32,6 +33,8 @@ class HealthKitManager: ObservableObject {
         
         let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         authorizationStatus = healthStore.authorizationStatus(for: stepType)
+        // For reading, we check if status is not .notDetermined (meaning user has made a choice)
+        // and if it's .sharingAuthorized, that means we can read
         isAuthorized = authorizationStatus == .sharingAuthorized
     }
     

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,28 +14,39 @@
 		3ADCA455343AB4673E14095A /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D9A0D0501E5D339DCD119 /* MessageBubble.swift */; };
 		4217A0F3AB86AAE34D155F42 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADC033BF22E2D9164FE0B6 /* ChatView.swift */; };
 		4C00030A0B9EF6A5D3097F57 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEB80CC31B8DBDE5A5D87A35 /* README.md */; };
+		4DA2241EFE591D608815DF54 /* FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md in Resources */ = {isa = PBXBuildFile; fileRef = EF96CE1F5B83DBB343EA326B /* FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md */; };
+		5434254E8AE69B2332A37636 /* DEVICE_BUILD_INSTRUCTIONS.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D100F0CB80038F9E8CB04CE /* DEVICE_BUILD_INSTRUCTIONS.md */; };
+		6E16E59C37F2282C9084539B /* ChatView_Simple.md in Resources */ = {isa = PBXBuildFile; fileRef = 1E7D2D296B6897AA1EE864FA /* ChatView_Simple.md */; };
+		6F04DDEA069364CC59E0D0A3 /* FOUNDATION_MODELS_INTEGRATION.md in Resources */ = {isa = PBXBuildFile; fileRef = 82B9F62819237BB2F0FBB467 /* FOUNDATION_MODELS_INTEGRATION.md */; };
 		7ED28856F89689FBA6600A12 /* HealthKitTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7301857E7D387F06D2937 /* HealthKitTools.swift */; };
 		8204E38097A6C570EB12A247 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD8154926DDE34DA4C8923 /* Message.swift */; };
 		8DBD387E291E2E00E5BAFE50 /* AIAssistantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BA4768885399E2C6CF4A /* AIAssistantManager.swift */; };
+		9A2AF4E46716835DE42B2BD2 /* CHAT_UI_LIBRARIES.md in Resources */ = {isa = PBXBuildFile; fileRef = 1A408EE65E26CFD0ABFB950B /* CHAT_UI_LIBRARIES.md */; };
 		B82C9C4D9DF8AC00F448D183 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5F31CF7CEC81466EB95CC2 /* HealthKitManager.swift */; };
 		C662B7D5499564B492ECCF11 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FBA269FB3F0E7354D423AC /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02386E5D00183322B9D81D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1A408EE65E26CFD0ABFB950B /* CHAT_UI_LIBRARIES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHAT_UI_LIBRARIES.md; sourceTree = "<group>"; };
+		1D100F0CB80038F9E8CB04CE /* DEVICE_BUILD_INSTRUCTIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DEVICE_BUILD_INSTRUCTIONS.md; sourceTree = "<group>"; };
+		1E7D2D296B6897AA1EE864FA /* ChatView_Simple.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ChatView_Simple.md; sourceTree = "<group>"; };
 		22F5EEF5F3000CEF0F35BDF3 /* HealthKitAssistantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitAssistantApp.swift; sourceTree = "<group>"; };
 		419D9A0D0501E5D339DCD119 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		45ADC033BF22E2D9164FE0B6 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		4BB3BE64F82C4DF68232F103 /* HealthDataModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataModels.swift; sourceTree = "<group>"; };
 		58B3BA4768885399E2C6CF4A /* AIAssistantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistantManager.swift; sourceTree = "<group>"; };
-		634B4C9168764FDE16C48038 /* HealthKitAssistant.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HealthKitAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		634B4C9168764FDE16C48038 /* HealthKitAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F13E21FBBECAC85F5E814E5 /* BUILD_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BUILD_SUMMARY.md; sourceTree = "<group>"; };
 		7235F7E6E908ABFA9E750C12 /* PROJECT_SETUP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT_SETUP.md; sourceTree = "<group>"; };
+		82B9F62819237BB2F0FBB467 /* FOUNDATION_MODELS_INTEGRATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FOUNDATION_MODELS_INTEGRATION.md; sourceTree = "<group>"; };
+		A09D8DE6FABE644D6B3D3CF1 /* HealthKitAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitAssistant.entitlements; sourceTree = "<group>"; };
 		AE5F31CF7CEC81466EB95CC2 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		BBC7301857E7D387F06D2937 /* HealthKitTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitTools.swift; sourceTree = "<group>"; };
 		D9BD8154926DDE34DA4C8923 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		DEB80CC31B8DBDE5A5D87A35 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E5FBA269FB3F0E7354D423AC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EF96CE1F5B83DBB343EA326B /* FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -50,6 +61,7 @@
 		7A814C009414286DB1349494 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1E7D2D296B6897AA1EE864FA /* ChatView_Simple.md */,
 				45ADC033BF22E2D9164FE0B6 /* ChatView.swift */,
 				419D9A0D0501E5D339DCD119 /* MessageBubble.swift */,
 			);
@@ -85,7 +97,12 @@
 			isa = PBXGroup;
 			children = (
 				6F13E21FBBECAC85F5E814E5 /* BUILD_SUMMARY.md */,
+				1A408EE65E26CFD0ABFB950B /* CHAT_UI_LIBRARIES.md */,
 				E5FBA269FB3F0E7354D423AC /* ContentView.swift */,
+				1D100F0CB80038F9E8CB04CE /* DEVICE_BUILD_INSTRUCTIONS.md */,
+				EF96CE1F5B83DBB343EA326B /* FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md */,
+				82B9F62819237BB2F0FBB467 /* FOUNDATION_MODELS_INTEGRATION.md */,
+				A09D8DE6FABE644D6B3D3CF1 /* HealthKitAssistant.entitlements */,
 				22F5EEF5F3000CEF0F35BDF3 /* HealthKitAssistantApp.swift */,
 				02386E5D00183322B9D81D8C /* Info.plist */,
 				7235F7E6E908ABFA9E750C12 /* PROJECT_SETUP.md */,
@@ -138,7 +155,6 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					92E48F11E5C9E71072B2A75A = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -153,7 +169,6 @@
 			);
 			mainGroup = 7A1C3287FD415CC3985B7E5A;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -168,6 +183,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DC0D182660586D8DF71D398 /* BUILD_SUMMARY.md in Resources */,
+				9A2AF4E46716835DE42B2BD2 /* CHAT_UI_LIBRARIES.md in Resources */,
+				6E16E59C37F2282C9084539B /* ChatView_Simple.md in Resources */,
+				5434254E8AE69B2332A37636 /* DEVICE_BUILD_INSTRUCTIONS.md in Resources */,
+				4DA2241EFE591D608815DF54 /* FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md in Resources */,
+				6F04DDEA069364CC59E0D0A3 /* FOUNDATION_MODELS_INTEGRATION.md in Resources */,
 				2843775BE3478886C6E96406 /* PROJECT_SETUP.md in Resources */,
 				4C00030A0B9EF6A5D3097F57 /* README.md in Resources */,
 			);
@@ -201,7 +221,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q95MN27KUW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HealthKitAssistant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -223,7 +243,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q95MN27KUW;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HealthKitAssistant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
