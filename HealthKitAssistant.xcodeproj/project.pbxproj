@@ -16,10 +16,12 @@
 		4C00030A0B9EF6A5D3097F57 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = DEB80CC31B8DBDE5A5D87A35 /* README.md */; };
 		4DA2241EFE591D608815DF54 /* FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md in Resources */ = {isa = PBXBuildFile; fileRef = EF96CE1F5B83DBB343EA326B /* FOUNDATION_MODELS_DEVICE_REQUIREMENTS.md */; };
 		5434254E8AE69B2332A37636 /* DEVICE_BUILD_INSTRUCTIONS.md in Resources */ = {isa = PBXBuildFile; fileRef = 1D100F0CB80038F9E8CB04CE /* DEVICE_BUILD_INSTRUCTIONS.md */; };
+		57B1D40444899E0910899F88 /* SafeAreaDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F099F510C05ADE838A75352 /* SafeAreaDebugView.swift */; };
 		6E16E59C37F2282C9084539B /* ChatView_Simple.md in Resources */ = {isa = PBXBuildFile; fileRef = 1E7D2D296B6897AA1EE864FA /* ChatView_Simple.md */; };
 		6F04DDEA069364CC59E0D0A3 /* FOUNDATION_MODELS_INTEGRATION.md in Resources */ = {isa = PBXBuildFile; fileRef = 82B9F62819237BB2F0FBB467 /* FOUNDATION_MODELS_INTEGRATION.md */; };
 		7ED28856F89689FBA6600A12 /* HealthKitTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC7301857E7D387F06D2937 /* HealthKitTools.swift */; };
 		8204E38097A6C570EB12A247 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD8154926DDE34DA4C8923 /* Message.swift */; };
+		85DC13CEFEF3E85EF95B3244 /* HealthDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E75DB6FB912D7834CE5C1DB /* HealthDataView.swift */; };
 		8DBD387E291E2E00E5BAFE50 /* AIAssistantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3BA4768885399E2C6CF4A /* AIAssistantManager.swift */; };
 		9A2AF4E46716835DE42B2BD2 /* CHAT_UI_LIBRARIES.md in Resources */ = {isa = PBXBuildFile; fileRef = 1A408EE65E26CFD0ABFB950B /* CHAT_UI_LIBRARIES.md */; };
 		B82C9C4D9DF8AC00F448D183 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5F31CF7CEC81466EB95CC2 /* HealthKitManager.swift */; };
@@ -40,6 +42,8 @@
 		6F13E21FBBECAC85F5E814E5 /* BUILD_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = BUILD_SUMMARY.md; sourceTree = "<group>"; };
 		7235F7E6E908ABFA9E750C12 /* PROJECT_SETUP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT_SETUP.md; sourceTree = "<group>"; };
 		82B9F62819237BB2F0FBB467 /* FOUNDATION_MODELS_INTEGRATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FOUNDATION_MODELS_INTEGRATION.md; sourceTree = "<group>"; };
+		8E75DB6FB912D7834CE5C1DB /* HealthDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataView.swift; sourceTree = "<group>"; };
+		8F099F510C05ADE838A75352 /* SafeAreaDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaDebugView.swift; sourceTree = "<group>"; };
 		A09D8DE6FABE644D6B3D3CF1 /* HealthKitAssistant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitAssistant.entitlements; sourceTree = "<group>"; };
 		AE5F31CF7CEC81466EB95CC2 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		BBC7301857E7D387F06D2937 /* HealthKitTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitTools.swift; sourceTree = "<group>"; };
@@ -63,7 +67,9 @@
 			children = (
 				1E7D2D296B6897AA1EE864FA /* ChatView_Simple.md */,
 				45ADC033BF22E2D9164FE0B6 /* ChatView.swift */,
+				8E75DB6FB912D7834CE5C1DB /* HealthDataView.swift */,
 				419D9A0D0501E5D339DCD119 /* MessageBubble.swift */,
+				8F099F510C05ADE838A75352 /* SafeAreaDebugView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,11 +210,13 @@
 				4217A0F3AB86AAE34D155F42 /* ChatView.swift in Sources */,
 				C662B7D5499564B492ECCF11 /* ContentView.swift in Sources */,
 				2282E560C68CC2A5CF6F16C8 /* HealthDataModels.swift in Sources */,
+				85DC13CEFEF3E85EF95B3244 /* HealthDataView.swift in Sources */,
 				15B8E924F04CF7A32D505BE0 /* HealthKitAssistantApp.swift in Sources */,
 				B82C9C4D9DF8AC00F448D183 /* HealthKitManager.swift in Sources */,
 				7ED28856F89689FBA6600A12 /* HealthKitTools.swift in Sources */,
 				8204E38097A6C570EB12A247 /* Message.swift in Sources */,
 				3ADCA455343AB4673E14095A /* MessageBubble.swift in Sources */,
+				57B1D40444899E0910899F88 /* SafeAreaDebugView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthKitAssistant/HealthKitAssistant.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q95MN27KUW;
@@ -241,6 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthKitAssistant/HealthKitAssistant.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q95MN27KUW;

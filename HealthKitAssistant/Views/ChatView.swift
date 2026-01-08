@@ -20,25 +20,19 @@ struct ChatView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Background that fills entire screen
-                Color(.systemGroupedBackground)
-                    .ignoresSafeArea(.all)
+        NavigationStack {
+            VStack(spacing: 0) {
+                // Messages - takes remaining space
+                messagesList
                 
-                VStack(spacing: 0) {
-                    // Messages - takes remaining space
-                    messagesList
-                        .layoutPriority(1)
-                    
-                    // Input bar
-                    inputBar
-                }
+                // Input bar at bottom
+                inputBar
             }
+            .background(Color(.systemGroupedBackground))
             .navigationTitle("Health Assistant")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
                     if !healthKitManager.isAuthorized {
                         Button("Enable") {
                             requestAuthorization()
@@ -51,6 +45,7 @@ struct ChatView: View {
             .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .onAppear {
             checkAuthorization()
         }
@@ -73,8 +68,7 @@ struct ChatView: View {
                 LazyVStack(spacing: 4) {
                     if messages.isEmpty {
                         welcomeView
-                            .padding(.top, 20)
-                            .padding(.bottom, 20)
+                            .padding(.vertical, 12)
                             .frame(maxWidth: .infinity)
                     }
                     
@@ -94,6 +88,7 @@ struct ChatView: View {
                 .padding(.vertical, 8)
                 .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onChange(of: messages.count) {
                 if let lastMessage = messages.last {
                     withAnimation(.easeOut(duration: 0.3)) {
@@ -176,9 +171,11 @@ struct ChatView: View {
                 .disabled(!canSend)
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 8)
+            .padding(.top, 8)
+            .padding(.bottom, 8)
             .background(Color(.systemBackground))
         }
+        .background(Color(.systemBackground))
     }
     
     private var canSend: Bool {
@@ -302,3 +299,4 @@ struct TypingIndicator: View {
         }
     }
 }
+
