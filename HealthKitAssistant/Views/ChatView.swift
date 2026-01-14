@@ -33,7 +33,9 @@ struct ChatView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if !healthKitManager.isAuthorized {
+                    // Only show Enable button if queries haven't worked yet
+                    // If queries work, permissions are granted (regardless of status check)
+                    if !healthKitManager.hasQueriedSuccessfully && healthKitManager.authorizationStatus == .notDetermined {
                         Button("Enable") {
                             requestAuthorization()
                         }
@@ -49,15 +51,32 @@ struct ChatView: View {
         .onAppear {
             checkAuthorization()
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            // Check authorization when app comes back from Settings
+            checkAuthorization()
+        }
         .alert("HealthKit Permission Required", isPresented: $showPermissionAlert) {
-            Button("Settings") {
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url)
+            Button("Open Settings") {
+                // Open directly to Privacy & Security > Health
+                if let url = URL(string: "App-Prefs:Privacy&path=HEALTH") {
+                    if UIApplication.shared.canOpenURL(url) {
+                        UIApplication.shared.open(url)
+                    } else {
+                        // Fallback to general settings
+                        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(settingsUrl)
+                        }
+                    }
+                } else {
+                    // Fallback to general settings
+                    if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(settingsUrl)
+                    }
                 }
             }
             Button("Cancel", role: .cancel) { }
         } message: {
-            Text("This app needs access to your health data to answer questions.")
+            Text("HealthKit permission was previously denied. Please go to Settings > Privacy & Security > Health > HealthKitAssistant and enable access to your health data.")
         }
     }
     
@@ -187,15 +206,35 @@ struct ChatView: View {
         // Check authorization status asynchronously to avoid blocking UI
         Task { @MainActor in
             healthKitManager.checkAuthorizationStatus()
+            print("🔐 Initial authorization check: isAuthorized = \(healthKitManager.isAuthorized)")
         }
     }
     
     private func requestAuthorization() {
-        Task {
+        print("🔐 Enable button tapped - requesting authorization")
+        Task { @MainActor in
             do {
                 try await healthKitManager.requestAuthorization()
+                print("🔐 Authorization completed, checking status...")
+                // Check status again after a brief delay to ensure UI updates
+                try? await Task.sleep(nanoseconds: 200_000_000) // 0.2 seconds
+                healthKitManager.checkAuthorizationStatus()
+                print("🔐 Status check complete, isAuthorized: \(healthKitManager.isAuthorized)")
             } catch {
-                // Handle error
+                print("🔐 Authorization error: \(error.localizedDescription)")
+                
+                // Check if permission was previously denied
+                if healthKitManager.authorizationStatus == .sharingDenied {
+                    // Show alert to open Settings
+                    showPermissionAlert = true
+                } else {
+                    // Show error message in chat
+                    let errorMsg = Message(
+                        content: "Failed to request HealthKit permission: \(error.localizedDescription). Please go to Settings > Privacy & Security > Health to enable access.",
+                        isUser: false
+                    )
+                    messages.append(errorMsg)
+                }
             }
         }
     }

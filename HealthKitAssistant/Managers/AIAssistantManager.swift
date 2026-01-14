@@ -132,6 +132,11 @@ class AIAssistantManager: ObservableObject {
             return generateHelpfulResponse(for: userMessage)
         }
         
+        // Don't block based on authorization status check - let the actual queries try
+        // Sometimes the status check is wrong but queries work
+        // The queries themselves will throw proper errors if truly not authorized
+        print("✅ AIAssistant: Processing query - intent: \(intent), date range: \(startDate) to \(endDate)")
+        
         do {
             let result: String
             
@@ -147,6 +152,8 @@ class AIAssistantManager: ObservableObject {
             case .unknown:
                 result = generateHelpfulResponse(for: userMessage)
             }
+            
+            print("✅ AIAssistant: Query successful, result: \(result.prefix(50))...")
             
             // Format the response in a natural way
             let response = formatResponse(for: intent, data: result, userQuery: userMessage)
@@ -316,23 +323,43 @@ class AIAssistantManager: ObservableObject {
     
     // Helper functions for natural language responses
     private func extractNumber(from text: String) -> Int? {
-        let numbers = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        return Int(numbers)
+        // Extract the first number before "steps"
+        // Format: "The user took 29511 steps between..."
+        if let stepsRange = text.range(of: "steps", options: .caseInsensitive) {
+            let beforeSteps = String(text[..<stepsRange.lowerBound])
+            // Find the last number before "steps"
+            if let match = beforeSteps.range(of: #"\d+"#, options: .regularExpression, range: nil, locale: nil) {
+                let numberString = String(beforeSteps[match])
+                return Int(numberString)
+            }
+        }
+        return nil
     }
     
     private func extractHeartRate(from text: String) -> Double? {
+        // Extract number before "bpm"
         let pattern = #"(\d+)\s*bpm"#
         if let range = text.range(of: pattern, options: .regularExpression) {
             let match = String(text[range])
-            let numbers = match.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-            return Double(numbers)
+            if let numberRange = match.range(of: #"\d+"#, options: .regularExpression) {
+                return Double(String(match[numberRange]))
+            }
         }
         return nil
     }
     
     private func extractCalories(from text: String) -> Double? {
-        let numbers = text.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-        return Double(numbers)
+        // Extract the first number before "calories" or "active calories"
+        // Format: "The user burned 372 active calories between..."
+        if let caloriesRange = text.range(of: "calories", options: .caseInsensitive) {
+            let beforeCalories = String(text[..<caloriesRange.lowerBound])
+            // Find the last number before "calories"
+            if let match = beforeCalories.range(of: #"\d+"#, options: .regularExpression, range: nil, locale: nil) {
+                let numberString = String(beforeCalories[match])
+                return Double(numberString)
+            }
+        }
+        return nil
     }
     
     private func getStepsContext(_ count: Int) -> String {

@@ -14,6 +14,7 @@ struct HealthDataView: View {
     @State private var lastNightSleep: Double? = nil
     @State private var isLoading = true
     @State private var errorMessage: String? = nil
+    @State private var showSettingsAlert = false
     
     var body: some View {
         NavigationStack {
@@ -34,7 +35,8 @@ struct HealthDataView: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
-                        if !healthKitManager.isAuthorized {
+                        // Only show Enable button if queries haven't worked yet
+                        if !healthKitManager.hasQueriedSuccessfully && healthKitManager.authorizationStatus == .notDetermined {
                             Button("Enable HealthKit") {
                                 requestAuthorization()
                             }
@@ -64,7 +66,8 @@ struct HealthDataView: View {
             .navigationTitle("Health Data")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if !healthKitManager.isAuthorized {
+                    // Only show Enable button if queries haven't worked yet
+                    if !healthKitManager.hasQueriedSuccessfully && healthKitManager.authorizationStatus == .notDetermined {
                         Button("Enable") {
                             requestAuthorization()
                         }
@@ -76,10 +79,44 @@ struct HealthDataView: View {
             .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .onAppear {
-                loadHealthData()
+                // Check authorization status first
+                Task { @MainActor in
+                    healthKitManager.checkAuthorizationStatus()
+                    loadHealthData()
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                // Check authorization and refresh when app comes back from Settings
+                Task { @MainActor in
+                    healthKitManager.checkAuthorizationStatus()
+                    await refreshData()
+                }
             }
             .refreshable {
                 await refreshData()
+            }
+            .alert("HealthKit Permission Required", isPresented: $showSettingsAlert) {
+                Button("Open Settings") {
+                    // Open directly to Privacy & Security > Health
+                    if let url = URL(string: "App-Prefs:Privacy&path=HEALTH") {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        } else {
+                            // Fallback to general settings
+                            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                                UIApplication.shared.open(settingsUrl)
+                            }
+                        }
+                    } else {
+                        // Fallback to general settings
+                        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(settingsUrl)
+                        }
+                    }
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("HealthKit permission was previously denied. Please go to Settings > Privacy & Security > Health > HealthKitAssistant and enable access to your health data.")
             }
         }
     }
@@ -180,7 +217,7 @@ struct HealthDataView: View {
                 .font(.headline)
                 .foregroundColor(.secondary)
             
-            if let sleepHours = lastNightSleep {
+            if let sleepHours = lastNightSleep, sleepHours > 0, sleepHours.isFinite {
                 let hours = Int(sleepHours)
                 let minutes = Int((sleepHours - Double(hours)) * 60)
                 healthMetricRow(
@@ -226,20 +263,23 @@ struct HealthDataView: View {
     
     // MARK: - Functions
     private func loadHealthData() {
-        guard healthKitManager.isAuthorized else {
-            isLoading = false
-            errorMessage = "HealthKit permission required. Tap 'Enable' to grant access."
-            return
-        }
-        
+        // Always try to load - queries will handle authorization errors
+        // Don't block based on status check which can be wrong
         Task {
             await refreshData()
         }
     }
     
     private func refreshData() async {
-        isLoading = true
-        errorMessage = nil
+        await MainActor.run {
+            isLoading = true
+            errorMessage = nil
+        }
+        
+        // Don't block based on authorization status - try the queries
+        // The queries will fail with proper errors if truly not authorized
+        // Sometimes status check is wrong but queries work
+        print("✅ HealthDataView: Attempting to load data...")
         
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: Date())
@@ -262,27 +302,60 @@ struct HealthDataView: View {
             
             await MainActor.run {
                 self.todaySteps = steps
-                self.todayCalories = calories
-                self.avgHeartRate = heartRateData.average
-                self.lastNightSleep = sleepDuration != nil ? sleepDuration! / 3600.0 : nil
+                self.todayCalories = calories.isFinite && calories >= 0 ? calories : 0.0
+                self.avgHeartRate = heartRateData.average?.isFinite == true && heartRateData.average! > 0 ? heartRateData.average : nil
+                
+                // Safely calculate sleep hours
+                if let duration = sleepDuration, duration > 0, duration.isFinite {
+                    let hours = duration / 3600.0
+                    self.lastNightSleep = hours.isFinite && hours > 0 && hours < 24 ? hours : nil
+                } else {
+                    self.lastNightSleep = nil
+                }
+                
                 self.isLoading = false
             }
         } catch {
+            let errorDesc = error.localizedDescription.lowercased()
+            let userMessage: String
+            
+            if errorDesc.contains("no data available") || errorDesc.contains("predicate") {
+                userMessage = "No health data available for today. Make sure you have health data in the Health app, or try adding test data in the simulator's Health app."
+            } else if errorDesc.contains("authorization") || errorDesc.contains("permission") {
+                userMessage = "HealthKit permission required. Tap 'Enable' to grant access."
+            } else {
+                userMessage = "Error loading health data: \(error.localizedDescription)"
+            }
+            
             await MainActor.run {
-                self.errorMessage = "Error loading health data: \(error.localizedDescription)"
+                self.errorMessage = userMessage
                 self.isLoading = false
             }
         }
     }
     
     private func requestAuthorization() {
-        Task {
+        print("🔐 Enable button tapped in HealthDataView - requesting authorization")
+        Task { @MainActor in
             do {
                 try await healthKitManager.requestAuthorization()
+                print("🔐 Authorization completed, checking status...")
+                // Give system time to update
+                try? await Task.sleep(nanoseconds: 200_000_000) // 0.2 seconds
+                // Update authorization status
+                healthKitManager.checkAuthorizationStatus()
+                print("🔐 Status check complete, isAuthorized: \(healthKitManager.isAuthorized)")
+                // Refresh data after authorization
                 await refreshData()
             } catch {
-                await MainActor.run {
-                    errorMessage = "Failed to authorize: \(error.localizedDescription)"
+                print("🔐 Authorization error: \(error.localizedDescription)")
+                
+                // Check if permission was previously denied
+                if healthKitManager.authorizationStatus == .sharingDenied {
+                    // Show alert to open Settings
+                    showSettingsAlert = true
+                } else {
+                    errorMessage = "Failed to authorize: \(error.localizedDescription). Please go to Settings > Privacy & Security > Health to enable access."
                 }
             }
         }
