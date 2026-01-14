@@ -5,9 +5,144 @@
 
 import Foundation
 
-// Foundation Models framework (when available in iOS 18+)
+// Foundation Models framework (when available in iOS 26+)
 #if canImport(FoundationModels)
 import FoundationModels
+
+// MARK: - Foundation Models Tools
+
+// Get Steps Tool
+struct GetStepsTool: Tool {
+    let name = "getSteps"
+    let description = "Get step count for a date range"
+    
+    private let healthKitTools: HealthKitTools
+    
+    init(healthKitTools: HealthKitTools) {
+        self.healthKitTools = healthKitTools
+    }
+    
+    @Generable
+    struct Arguments {
+        @Guide(description: "Start date for the query in ISO8601 format (YYYY-MM-DD)")
+        let startDate: String
+        
+        @Guide(description: "End date for the query in ISO8601 format (YYYY-MM-DD)")
+        let endDate: String
+    }
+    
+    func call(arguments: Arguments) async throws -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate]
+        
+        guard let startDate = formatter.date(from: arguments.startDate),
+              let endDate = formatter.date(from: arguments.endDate) else {
+            throw NSError(domain: "GetStepsTool", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid date format"])
+        }
+        
+        return try await healthKitTools.getSteps(startDate: startDate, endDate: endDate)
+    }
+}
+
+// Get Heart Rate Tool
+struct GetHeartRateTool: Tool {
+    let name = "getHeartRate"
+    let description = "Get heart rate data for a date range"
+    
+    private let healthKitTools: HealthKitTools
+    
+    init(healthKitTools: HealthKitTools) {
+        self.healthKitTools = healthKitTools
+    }
+    
+    @Generable
+    struct Arguments {
+        @Guide(description: "Start date for the query in ISO8601 format (YYYY-MM-DD)")
+        let startDate: String
+        
+        @Guide(description: "End date for the query in ISO8601 format (YYYY-MM-DD)")
+        let endDate: String
+    }
+    
+    func call(arguments: Arguments) async throws -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate]
+        
+        guard let startDate = formatter.date(from: arguments.startDate),
+              let endDate = formatter.date(from: arguments.endDate) else {
+            throw NSError(domain: "GetHeartRateTool", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid date format"])
+        }
+        
+        return try await healthKitTools.getHeartRate(startDate: startDate, endDate: endDate)
+    }
+}
+
+// Get Sleep Tool
+struct GetSleepTool: Tool {
+    let name = "getSleep"
+    let description = "Get sleep data for a date range"
+    
+    private let healthKitTools: HealthKitTools
+    
+    init(healthKitTools: HealthKitTools) {
+        self.healthKitTools = healthKitTools
+    }
+    
+    @Generable
+    struct Arguments {
+        @Guide(description: "Start date for the query in ISO8601 format (YYYY-MM-DD)")
+        let startDate: String
+        
+        @Guide(description: "End date for the query in ISO8601 format (YYYY-MM-DD)")
+        let endDate: String
+    }
+    
+    func call(arguments: Arguments) async throws -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate]
+        
+        guard let startDate = formatter.date(from: arguments.startDate),
+              let endDate = formatter.date(from: arguments.endDate) else {
+            throw NSError(domain: "GetSleepTool", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid date format"])
+        }
+        
+        return try await healthKitTools.getSleep(startDate: startDate, endDate: endDate)
+    }
+}
+
+// Get Active Energy Tool
+struct GetActiveEnergyTool: Tool {
+    let name = "getActiveEnergy"
+    let description = "Get active calories burned for a date range"
+    
+    private let healthKitTools: HealthKitTools
+    
+    init(healthKitTools: HealthKitTools) {
+        self.healthKitTools = healthKitTools
+    }
+    
+    @Generable
+    struct Arguments {
+        @Guide(description: "Start date for the query in ISO8601 format (YYYY-MM-DD)")
+        let startDate: String
+        
+        @Guide(description: "End date for the query in ISO8601 format (YYYY-MM-DD)")
+        let endDate: String
+    }
+    
+    func call(arguments: Arguments) async throws -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate]
+        
+        guard let startDate = formatter.date(from: arguments.startDate),
+              let endDate = formatter.date(from: arguments.endDate) else {
+            throw NSError(domain: "GetActiveEnergyTool", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid date format"])
+        }
+        
+        return try await healthKitTools.getActiveEnergy(startDate: startDate, endDate: endDate)
+    }
+}
+
 #endif
 
 @MainActor
@@ -18,9 +153,14 @@ class AIAssistantManager: ObservableObject {
     @Published var isProcessing = false
     @Published var errorMessage: String?
     
-    // Foundation Models session (will be initialized when framework is available)
-    // Note: Foundation Models framework API is not yet publicly available
-    // This structure is ready for when it becomes available
+    #if canImport(FoundationModels)
+    // Foundation Models
+    private let model = SystemLanguageModel.default
+    private var session: LanguageModelSession?
+    
+    // HealthKit tools for Foundation Models
+    private var healthKitToolsForFM: [any Tool] = []
+    #endif
     
     init(healthKitManager: HealthKitManager) {
         self.healthKitManager = healthKitManager
@@ -32,34 +172,69 @@ class AIAssistantManager: ObservableObject {
     private func setupFoundationModels() {
         #if canImport(FoundationModels)
         // Foundation Models framework is available!
-        // Note: Even though the framework can be imported, the actual API
-        // may not be publicly documented yet. This is a placeholder for when
-        // the API becomes available.
         print("✅ Foundation Models framework detected")
-        // TODO: Initialize when API is documented
-        // let systemPrompt = """
-        // You are a helpful health assistant. You can access the user's HealthKit data 
-        // through available tools. When users ask about their health:
-        //
-        // 1. Use the appropriate tools to fetch data
-        // 2. Provide clear, encouraging insights
-        // 3. Be specific with numbers and dates
-        // 4. Offer helpful context when relevant
-        // 5. Never provide medical advice
-        //
-        // Available tools:
-        // - getSteps: Get step count for a date range
-        // - getHeartRate: Get heart rate data for a date range
-        // - getSleep: Get sleep data for a date range
-        // - getActiveEnergy: Get active calories for a date range
-        // """
-        // llmSession = LLMSession(systemPrompt: systemPrompt)
-        // registerTools()
+        
+        // Check model availability
+        switch model.availability {
+        case .available:
+            print("✅ SystemLanguageModel is available")
+            
+            // Create tools
+            createTools()
+            
+            // Create session with instructions for multi-turn conversations
+            let instructions = """
+            You are a helpful health assistant. You can access the user's HealthKit data 
+            through available tools. When users ask about their health:
+            
+            1. Use the appropriate tools to fetch data
+            2. Provide clear, encouraging insights
+            3. Be specific with numbers and dates
+            4. Offer helpful context when relevant
+            5. Never provide medical advice
+            """
+            
+            // Create session with tools and instructions
+            // Tools must come before instructions in the initializer
+            session = LanguageModelSession(tools: healthKitToolsForFM, instructions: instructions)
+            print("✅ LanguageModelSession created with \(healthKitToolsForFM.count) tools and instructions")
+            
+        case .unavailable(.deviceNotEligible):
+            print("⚠️ Model unavailable: Device not eligible for Apple Intelligence")
+            print("   Falling back to pattern matching")
+            
+        case .unavailable(.appleIntelligenceNotEnabled):
+            print("⚠️ Model unavailable: Apple Intelligence not enabled in Settings")
+            print("   Please enable Apple Intelligence in Settings > Apple Intelligence")
+            print("   Falling back to pattern matching")
+            
+        case .unavailable(.modelNotReady):
+            print("⚠️ Model unavailable: Model not ready (downloading or system reasons)")
+            print("   The model may still be downloading. Please wait and try again.")
+            print("   Falling back to pattern matching")
+            
+        case .unavailable(let other):
+            print("⚠️ Model unavailable: \(other)")
+            print("   Falling back to pattern matching")
+        }
         #else
         // Foundation Models framework not available - using pattern matching
         print("ℹ️ Using pattern matching (Foundation Models framework not available in SDK)")
         #endif
     }
+    
+    #if canImport(FoundationModels)
+    // Create HealthKit tools for Foundation Models
+    private func createTools() {
+        healthKitToolsForFM = [
+            GetStepsTool(healthKitTools: healthKitTools),
+            GetHeartRateTool(healthKitTools: healthKitTools),
+            GetSleepTool(healthKitTools: healthKitTools),
+            GetActiveEnergyTool(healthKitTools: healthKitTools)
+        ]
+        print("✅ Created \(healthKitToolsForFM.count) HealthKit tools for Foundation Models")
+    }
+    #endif
     
     // Process a user query using Foundation Models
     func processQuery(_ userMessage: String) async throws -> String {
@@ -85,16 +260,59 @@ class AIAssistantManager: ObservableObject {
     
     #if canImport(FoundationModels)
     // Process query using Foundation Models
-    // This will be implemented when Foundation Models framework is available
     private func processWithFoundationModels(_ userMessage: String) async throws -> String {
-        // TODO: Implement when Foundation Models API is available
-        // Example structure:
-        // 1. Add user message to LLMSession
-        // 2. Model analyzes and calls tools as needed
-        // 3. Return generated response
+        // Check if model is available
+        guard model.availability == .available else {
+            print("⚠️ Foundation Models not available, falling back to pattern matching")
+            return try await processWithPatternMatching(userMessage)
+        }
         
-        // For now, use enhanced pattern matching
-        return try await processWithPatternMatching(userMessage)
+        // Ensure session exists
+        guard let session = session else {
+            print("⚠️ LanguageModelSession not created, falling back to pattern matching")
+            return try await processWithPatternMatching(userMessage)
+        }
+        
+        // Check if session is already responding
+        guard !session.isResponding else {
+            print("⚠️ Session is already processing a request, falling back to pattern matching")
+            return try await processWithPatternMatching(userMessage)
+        }
+        
+        do {
+            // Call the model with the user's message and tools
+            // Tools are provided when calling respond()
+            // Check documentation for exact method signature
+            // Possible: respond(to:tools:) or respond(to:options:) with tools in options
+            
+            let response: LanguageModelSession.Response<String>
+            
+            // Call the model - tools are already registered with the session
+            response = try await session.respond(to: userMessage)
+            
+            // Extract the string content from the response
+            let responseText = response.content
+            
+            print("✅ Foundation Models generated response")
+            return responseText
+            
+        } catch {
+            print("❌ Foundation Models error: \(error)")
+            
+            // Handle specific errors
+            if let generationError = error as? LanguageModelSession.GenerationError {
+                switch generationError {
+                case .exceededContextWindowSize(let size):
+                    print("⚠️ Context window exceeded: \(size) tokens")
+                    print("   Consider breaking up the conversation or starting a new session")
+                default:
+                    print("⚠️ Generation error: \(generationError)")
+                }
+            }
+            
+            print("   Falling back to pattern matching")
+            return try await processWithPatternMatching(userMessage)
+        }
     }
     #endif
     
